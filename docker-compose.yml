@@ -1,0 +1,17 @@
+version: '3'
+services:
+     database:
+          image: 'mongo'
+          container_name: ${CONTAINERNAME}
+          environment:
+            - MONGO_INITDB_DATABASE=${DBNAME}
+            - MONGO_INITDB_USERNAME=${DBUSER}
+            - MONGO_INITDB_PASSWORD=${DBPASS}
+          volumes:
+            - ./init-mongo-db.js:/docker-entrypoint-initdb.d/init-mongo-db.js:ro
+            - ./mongo-volume:/data/db
+          ports:
+            - ${PORT1}:27017
+            - ${PORT2}:27018
+            - ${PORT3}:27019
+
